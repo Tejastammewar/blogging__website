@@ -1,0 +1,163 @@
+/* Define a common background color for the entire page */
+body {
+  background-color: #f8f8f8;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.home-page {
+  /* max-width: 1200px; */
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #ffffff;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Section */
+.hero {
+  background-image: url("blogging.jpg");
+  background-size: cover;
+  background-position: center;
+  color: black;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.slogan {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.create-button {
+  background-color: #0c356a;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.create-button:hover {
+  background-color: #427d9d;
+}
+
+/* Categories Section */
+.categories {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+
+.category {
+  flex: 0 0 calc(33.33% - 20px);
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.category img {
+  width: 100%;
+  max-height: 150px;
+}
+
+/* Posts Section */
+.posts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  margin-top: 40px;
+}
+
+.post {
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  padding: 20px;
+  text-align: center;
+}
+
+.post img {
+  width: 100%;
+  max-height: 150px;
+}
+
+/* Newsletter Section */
+.newsletter {
+  background-color: #164863;
+  color: #ffffff;
+  text-align: center;
+  padding: 40px 0;
+}
+
+.newsletter h2 {
+  font-size: 24px;
+}
+
+.newsletter form {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.newsletter input[type="email"] {
+  padding: 10px;
+  width: 250px;
+  border: none;
+  border-radius: 5px;
+}
+
+.newsletter button {
+  background-color: #ffffff;
+  color: #f65c85;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Social Media Section */
+.social-media {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.social-media a {
+  color: black;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 24px;
+}
+
+/* Footer Section */
+.footer {
+  background-color: #f8f8f8;
+  color: #333333;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  display: inline;
+  margin: 0 10px;
+}
+
+/* Media Queries for Responsiveness (Adjust as needed) */
+@media (max-width: 768px) {
+  .categories {
+    flex-direction: column;
+  }
+  .category {
+    flex: 0 0 100%;
+    margin-top: 20px;
+  }
+  .posts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

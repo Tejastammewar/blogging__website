@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+.App {
+  text-align: center;
+}
+
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  font-size: 1.5rem;
+}
+
+.home-page {
+  margin: 2rem;
+}
+
+.create-post {
+  background-color: #007bff;
+  color: white;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.create-post:hover {
+  background-color: #0056b3;
+}
