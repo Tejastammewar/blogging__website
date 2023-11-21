@@ -69,16 +69,14 @@ const SignUp = () => {
   const handleSubmit = async () => {
     const { email, password } = formData;
     if (email && password) {
-      axios.post("http://localhost:9002/login", formData)
-        .then(res => console.log(res));
+      axios
+        .post("http://localhost:9002/login", formData)
+        .then((res) => console.log(res));
     } else {
       alert("invalid input ");
     }
 
-    if (
-      formData.email.trim() === "" ||
-      formData.password.trim() === ""
-    ) {
+    if (formData.email.trim() === "" || formData.password.trim() === "") {
       setErrors({
         email: formData.email.trim() === "" ? "Email is required" : "",
         password: formData.password.trim() === "" ? "Password is required" : "",
@@ -100,13 +98,11 @@ const SignUp = () => {
         ></img>
 
         <div className="header">
-          <div className="text">Login</div>
+          <div className="text fw-bold">Login</div>
           <div className="underline"></div>
         </div>
 
         <div className="inputs">
-          
-
           <div className="input">
             <img src={email_icon} alt="" />
             <input
@@ -140,14 +136,10 @@ const SignUp = () => {
           </div>
         </div>
 
-        {success && (
-          <p className="success">
-            Logged In Successfully.
-            <a href="/Home">Got to home</a>
-          </p>
-        )}
-
-        
+        {success && <p className="success">Logged In Successfully.</p>}
+        <a className="homelink" href="/Home">
+          Got to home
+        </a>
       </div>
     </div>
   );

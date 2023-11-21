@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import SocialMediaLinks from "./SocialMediaLinks";
 import "./Home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,6 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function Home() {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [message, setMessage] = useState(null);
 
   // Dummy posts data for each category
   const categoryPosts = {
@@ -23,20 +25,58 @@ function Home() {
       { title: "Tech Post 1", description: "Description of Tech Post 1." },
       { title: "Tech Post 2", description: "Description of Tech Post 2." },
     ],
+    Science: [
+      {
+        title: "Science Post 1",
+        description: "Description of Science Post 1.",
+      },
+      {
+        title: "Science Post 2",
+        description: "Description of Science Post 2.",
+      },
+    ],
+    Life: [
+      {
+        title: "Life Post 1",
+        description: "Description of Life Post 1.",
+      },
+      {
+        title: "Life Post 2",
+        description: "Description of Life Post 2.",
+      },
+    ],
+    Programming: [
+      {
+        title: "Programming Post 1",
+        description: "Description of Programming Post 1.",
+      },
+      {
+        title: "Programming Post 2",
+        description: "Description of Programming Post 2.",
+      },
+    ],
   };
 
   // Function to handle category click
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
-    setPosts(categoryPosts[category] || []); // Set posts based on the selected category
+    setPosts(categoryPosts[category] || []);
   };
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+
+    const email = e.target.elements.email.value;
+    alert(`Thank you for subscribing! We'll keep you updated.`);
+    e.target.reset(); // Reset the form
+  };
+
   return (
     <div className="home-page">
       <div className="hero">
         <h2 className="slogan fw-bold">Level Up your Life...</h2>
-        <button className="create-button">
+        <Link to="/blog" className="create-button">
           <b style={{ fontSize: "1.3rem" }}>Create Post</b>
-        </button>
+        </Link>
       </div>
       <div className="categories">
         <h2>Explore Categories</h2>
@@ -77,40 +117,38 @@ function Home() {
           >
             Programming
           </button>
-          <button
-            className="category-option"
-            onClick={() => handleCategoryClick("Productivity")}
-          >
-            Productivity
-          </button>
-          {/* Add more category buttons as needed */}
         </div>
       </div>
 
-      {/* Popular Posts Section */}
+      {/* Display posts based on selected category */}
       <div className="posts">
-        {/* Post 1 */}
-        <div className="post">
-          <h3>Post Title 1</h3>
-          <p>Short description of Post 1.</p>
-        </div>
-        <div className="post">
-          <h3>Post Title 2</h3>
-          <p>Short description of Post 2.</p>
-        </div>
-        <div className="post">
-          <h3>Post Title 3</h3>
-          <p>Short description of Post 2.</p>
-        </div>
+        {posts.map((post, index) => (
+          <div key={index} className="post">
+            <h3>{post.title}</h3>
+            <p>{post.description}</p>
+          </div>
+        ))}
       </div>
-      {/* Newsletter Signup */}
+
       <div className="newsletter">
-        <h2>Subscribe to Our Newsletter</h2>
-        <form>
-          <input type="email" placeholder="Enter your email" />
-          <button>Subscribe</button>
+        <h2 className="subsbtn">Subscribe to Our Newsletter</h2>
+        <form onSubmit={handleSubscribe}>
+          <input
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            required
+          />
+          <button type="submit">Subscribe</button>
         </form>
+        {message && (
+          <div className="custom-alert">
+            {message}
+            <span onClick={() => setMessage(null)}>&times;</span>
+          </div>
+        )}
       </div>
+
       {/* Social Media Links */}
       <div className="social-media">
         <a href="https://twitter.com">
@@ -120,6 +158,7 @@ function Home() {
           <FontAwesomeIcon icon={faInstagram} />
         </a>
       </div>
+
       {/* Footer */}
       <div className="footer">
         <ul>

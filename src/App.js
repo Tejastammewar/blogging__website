@@ -17,14 +17,15 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/posts" element={<Posts />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
-          
-          <Route path="/blog" element={<Blog/>}/>
-          <Route path="/create" element={<Create/>}/>
-          <Route path="/update/:id" element={<Update/>}/>
+
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/update/:id" element={<Update />} />
         </Routes>
       </Router>
     </div>

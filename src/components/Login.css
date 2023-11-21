@@ -85,3 +85,10 @@
   color: white;
   text-decoration: none;
 }
+.success {
+  color: white;
+  font-size: 30px;
+}
+.homelink {
+  color: yellow;
+}

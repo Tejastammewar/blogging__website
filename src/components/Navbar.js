@@ -14,11 +14,6 @@ function Navbar() {
               Home
             </Link>
           </li>
-          <li>
-          <Link to="/blog" className="nav-link">
-              Blog
-            </Link>
-          </li>
 
           {/* <li>
           <Link to="/create" className="nav-link">
@@ -26,16 +21,8 @@ function Navbar() {
             </Link>
           </li> */}
 
-          <li>
-          <Link to="/update" className="nav-link">
-              Update 
-            </Link>
-          </li>
-
-
-
           <li className="nav-item">
-            <Link to="/posts" className="nav-link">
+            <Link to="/blog" className="nav-link">
               Posts
             </Link>
           </li>
