@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ForgotPassword from "./components/ForgotPassword";
 import "./App.css";
 import SignUp from "./components/SignUp";
+import Blog from "./components/Blog";
+
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" Component={ForgotPassword} />
+          
+          <Route path="/blog" element={<Blog/>}/>
         </Routes>
       </Router>
     </div>

@@ -1,136 +1,156 @@
 import React, { useState, useEffect } from "react";
 import "./Login.css";
-import riverimage from "./nice.jpg";
+import email_icon from "./email.jpg";
+import password_icon from "./password.jpg";
+import backgroundImage from "./nice.jpg";
+import person_icon from "./person.jpg";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
+const SignUp = () => {
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+  });
+
   const [success, setSuccess] = useState(false);
-  const [formSubmitted, setFormSubmitted] = useState(false);
-  const [rememberedUsers, setRememberedUsers] = useState([]);
 
-  useEffect(() => {
-    // Check if "Remember Me" was previously selected
-    const rememberMeFromStorage = localStorage.getItem("rememberMe");
-    if (rememberMeFromStorage === "true") {
-      // Automatically set the "Remember Me" checkbox
-      setRememberMe(true);
-      // Retrieve remembered usernames from local storage
-      const rememberedUsersFromStorage = JSON.parse(
-        localStorage.getItem("rememberedUsers")
-      );
-      if (rememberedUsersFromStorage) {
-        setRememberedUsers(rememberedUsersFromStorage);
-      }
+  const validateEmail = (email) => {
+    const emailRegex = /\S+@\S+\.\S+/; // Basic email format validation
+    if (!emailRegex.test(email)) {
+      return "Email is invalid";
     }
-  }, []);
+    return "";
+  };
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleRememberMeChange = (e) => {
-    setRememberMe(e.target.checked);
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFormSubmitted(true);
-
-    if (username && password) {
-      console.log(username, password);
-      if (rememberMe) {
-        localStorage.setItem("rememberMe", "true");
-        const updatedRememberedUsers = [...rememberedUsers, username];
-        localStorage.setItem(
-          "rememberedUsers",
-          JSON.stringify(updatedRememberedUsers)
-        );
-      } else {
-        localStorage.removeItem("rememberMe");
-      }
-      setUsername("");
-      setPassword("");
-      setSuccess(true);
+  const validatePassword = (password) => {
+    if (password.length < 9) {
+      return "Password must be at least 9 characters long";
     }
+
+    const specialCharRegex = /[!@#$%^&*()_+[\]{};':"\\|,.<>?]/;
+    if (!specialCharRegex.test(password)) {
+      return "Password must contain at least one special character";
+    }
+
+    return "";
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+
+    let errorMessage = "";
+    switch (name) {
+      case "email":
+        errorMessage = validateEmail(value);
+        break;
+      case "password":
+        errorMessage = validatePassword(value);
+        break;
+      default:
+        break;
+    }
+
+    setErrors({
+      ...errors,
+      [name]: errorMessage,
+    });
+  };
+
+  const handleSubmit = async () => {
+    const { email, password } = formData;
+    if (email && password) {
+      axios.post("http://localhost:9002/login", formData)
+        .then(res => console.log(res));
+    } else {
+      alert("invalid input ");
+    }
+
+    if (
+      formData.email.trim() === "" ||
+      formData.password.trim() === ""
+    ) {
+      setErrors({
+        email: formData.email.trim() === "" ? "Email is required" : "",
+        password: formData.password.trim() === "" ? "Password is required" : "",
+      });
+      return;
+    }
+
+    setSuccess(true);
   };
 
   return (
-    <>
-      {success ? (
-        <section>
-          <h1>you are logged in!!!</h1>
-          <br></br>
-          <p>
-            <a href="#">Got to home</a>
-          </p>
-        </section>
-      ) : (
-        <div className="login-box">
-          <img src={riverimage} alt="RIverr" className="background-image"></img>
-          <form className={formSubmitted ? "was-validated" : ""}>
-            <div className="login-form was-validated">
-              <p class="heading">Have an Account?</p>
-              <input
-                type="text"
-                id="username"
-                placeholder="Username"
-                value={username}
-                onChange={handleUsernameChange}
-                required
-              ></input>
-              {formSubmitted && !username && (
-                <div className="invalid-feedback mb-3 mt-1 fw-bold">
-                  Please enter your username
-                </div>
-              )}
-              <input
-                type="password"
-                id="password"
-                placeholder="Password"
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              ></input>
-              {formSubmitted && !password && (
-                <div className="invalid-feedback mb-3 mt-1 fw-bold">
-                  Please enter your password
-                </div>
-              )}
-              <button type="submit" onClick={handleSubmit}>
-                SIGN IN
-              </button>
+    <div>
+      <div className="background-image"></div>
+      <div className="container">
+        <img
+          src={backgroundImage}
+          alt="River"
+          className="background-image"
+        ></img>
 
-              <div className="checkbox-container ">
-                <input
-                  type="checkbox"
-                  id="rememberMe"
-                  name="rememberMe"
-                  checked={rememberMe}
-                  onChange={handleRememberMeChange}
-                />
-                <label htmlFor="#">Remember me</label>
-
-                <a href="/forgot-password" className="forgot-password">
-                  Forgot Password?
-                </a>
-              </div>
-              <p className="dont">
-                Don't have an account?{" "}
-                <Link to="/signup" style={{ color: "yellow" }}>
-                  Sign Up
-                </Link>
-              </p>
-            </div>
-          </form>
+        <div className="header">
+          <div className="text">Login</div>
+          <div className="underline"></div>
         </div>
-      )}
-    </>
+
+        <div className="inputs">
+          
+
+          <div className="input">
+            <img src={email_icon} alt="" />
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="error-message">{errors.email}</div>
+
+          <div className="input">
+            <img src={password_icon} alt="" />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="error-message">{errors.password}</div>
+
+          <div className="submit-container">
+            <button type="button" onClick={handleSubmit} className="submit">
+              LOGIN
+            </button>
+          </div>
+        </div>
+
+        {success && (
+          <p className="success">
+            Logged In Successfully.
+            <a href="/Home">Got to home</a>
+          </p>
+        )}
+
+        
+      </div>
+    </div>
   );
-}
-export default Login;
+};
+
+export default SignUp;

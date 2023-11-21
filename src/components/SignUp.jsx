@@ -101,10 +101,20 @@ const SignUp = () => {
     setErrors({
       ...errors,
       [name]: errorMessage,
-    });
+    })
   };
 
   const handleSubmit = async () => {
+    const {name,phoneNumber,email,password,confirmPassword}=formData
+    if(name && email && password && phoneNumber&& (password===confirmPassword)){
+      axios.post("http://localhost:9002/register",formData) 
+      .then(res=> console.log(res))
+    }
+    else{
+      alert("invalid input ")
+    }
+   
+    
     if (
       formData.name.trim() === "" ||
       formData.phoneNumber.trim() === "" ||
@@ -126,17 +136,7 @@ const SignUp = () => {
       return;
     }
 
-    try {
-      const response = await axios.post("/api/register", formData);
-      if (response.status === 200) {
-        setSuccess(true);
-      }
-    } catch (err) {
-      setErrors({
-        ...errors,
-        // Set error message based on the error response
-      });
-    }
+    
   };
 
   return (
@@ -148,13 +148,16 @@ const SignUp = () => {
           alt="RIverr"
           className="background-image"
         ></img>
+       
         <div className="header">
           <div className="text">Sign Up</div>
           <div className="underline"></div>
         </div>
+        
         <div className="inputs">
           <div className="input">
             <img src={person_icon} alt="" />
+            
             <input
               type="text"
               name="name"
