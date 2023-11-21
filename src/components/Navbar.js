@@ -19,6 +19,21 @@ function Navbar() {
               Blog
             </Link>
           </li>
+
+          {/* <li>
+          <Link to="/create" className="nav-link">
+              Create
+            </Link>
+          </li> */}
+
+          <li>
+          <Link to="/update" className="nav-link">
+              Update 
+            </Link>
+          </li>
+
+
+
           <li className="nav-item">
             <Link to="/posts" className="nav-link">
               Posts
