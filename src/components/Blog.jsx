@@ -35,7 +35,7 @@ function Blog() {
         {users.map((user) => (
           <div key={user._id} className="post-card">
             <h3 className="post-title">{user.title}</h3>
-
+            <h3 className="post-title">{user.content}</h3>
             <div className="post-actions">
               <Link to={`/update/${user._id}`} className="btn btn-update">
                 Update

@@ -8,7 +8,7 @@ import ForgotPassword from "./components/ForgotPassword";
 import "./App.css";
 import SignUp from "./components/SignUp";
 import Blog from "./components/Blog";
-import Update from "./components/Update";
+import Update from "./components/update";
 import Create from "./components/Create";
 function App() {
   return (
