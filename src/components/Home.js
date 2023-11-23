@@ -14,8 +14,16 @@ function Home() {
   // Dummy posts data for each category
   const categoryPosts = {
     food: [
-      { title: "Food Post 1", description: "Description of Food Post 1." },
-      { title: "Food Post 2", description: "Description of Food Post 2." },
+      {
+        title: "Quick Breakfast Ideas",
+        description: "Oatmeal with Nut Butter and Banana",
+      },
+
+      {
+        title: "Delicious Pasta Recipes",
+        description:
+          "Enjoy a classic spaghetti Bolognese with a rich and savory meat sauce. Top it with freshly grated Parmesan cheese for the perfect finish.",
+      },
     ],
     travel: [
       { title: "Travel Post 1", description: "Description of Travel Post 1." },
